@@ -29,7 +29,7 @@ npm run build
  npx serve -s build
 ```
 
-4. Acesse a aplicação em seu navegador no endereço http://localhost:8080
+4. Acesse a aplicação em seu navegador no endereço http://localhost:5000
 
 
 É possível também utilizar o Docker já que a aplicação foi dockerizada. Para isso será  necessário construir e depois executar:
