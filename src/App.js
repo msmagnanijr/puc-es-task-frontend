@@ -12,18 +12,18 @@ class App extends Component {
       editingTaskId: null,
       editingTitle: '',
       editingDescription: '',
-      news: [], // Inicialize news como uma matriz de objetos vazia
-      selectedNews: '', // Estado para armazenar a notícia selecionada
+      news: [], 
+      selectedNews: '', 
     };
   }
 
   componentDidMount() {
     this.loadTasks();
-    this.loadNews(); // Chame o método para carregar as notícias
+    this.loadNews();
   }
 
   loadTasks() {
-    fetch('http://localhost:5000/tasks') // Altere para a URL da sua API Flask
+    fetch('http://localhost:5000/tasks')
       .then(response => response.json())
       .then(data => {
         this.setState({ tasks: data.tasks });
@@ -32,10 +32,9 @@ class App extends Component {
   }
 
   loadNews() {
-    fetch('http://localhost:5000/tasks/get_news?keyword=personal%20tasks') // Altere para a URL da sua API Flask
+    fetch('http://localhost:5000/tasks/get_news?keyword=personal%20tasks')
       .then(response => response.json())
       .then(data => {
-        // Acesse a lista de títulos de notícias corretamente usando data.news.news_titles
         this.setState({ news: data.news.news_titles });
       })
       .catch(error => console.error('Error fetching news:', error));
@@ -43,7 +42,7 @@ class App extends Component {
 
   addTask() {
     const { title, description } = this.state;
-    fetch('http://localhost:5000/tasks', { // Altere para a URL da sua API Flask
+    fetch('http://localhost:5000/tasks', { 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -62,7 +61,7 @@ class App extends Component {
   }
 
   deleteTask(taskId) {
-    fetch(`http://localhost:5000/tasks/${taskId}`, { // Altere para a URL da sua API Flask
+    fetch(`http://localhost:5000/tasks/${taskId}`, {
       method: 'DELETE',
     })
       .then(response => {
@@ -88,7 +87,7 @@ class App extends Component {
 
   updateTask() {
     const { editingTaskId, editingTitle, editingDescription } = this.state;
-    fetch(`http://localhost:5000/tasks/${editingTaskId}`, { // Altere para a URL da sua API Flask
+    fetch(`http://localhost:5000/tasks/${editingTaskId}`, { 
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
